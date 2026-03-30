@@ -1,0 +1,238 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import profileImage from '../assets/jsp.jpg';
+import { name, title, summary } from '../data';
+
+const primaryLinks = [
+  {
+    name: "Experience",
+    url: "/experience",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`,
+  },
+  {
+    name: "Publications",
+    url: "/publications",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+  },
+  {
+    name: "Projects",
+    url: "/projects",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+  },
+];
+
+const secondaryLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/joaospinto",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/jo%C3%A3o-sousa-pinto-003308128",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+  },
+  {
+    name: "Google Scholar",
+    url: "https://scholar.google.com/citations?user=xgZze5AAAAAJ",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
+  },
+];
+---
+
+<Layout title={name}>
+	<main>
+		<section class="v-card-container">
+			<div class="card">
+				<div class="profile-header">
+					<div class="avatar-container">
+						<Image 
+							src={profileImage} 
+							alt={name} 
+							width={180} 
+							height={180} 
+							quality="high"
+							class="avatar-image"
+						/>
+					</div>
+					<h1 class="name">{name}</h1>
+					<p class="title">{title}</p>
+				</div>
+				
+				<div class="content">
+					<p class="summary">{summary}</p>
+				</div>
+
+				<div class="actions">
+					<div class="primary-actions">
+						{primaryLinks.map((link) => (
+							<a href={link.url} class="btn main-btn">
+								<span class="icon" set:html={link.icon} />
+								<span class="label">{link.name}</span>
+							</a>
+						))}
+					</div>
+					<div class="secondary-actions">
+						{secondaryLinks.map((link) => (
+							<a href={link.url} class="icon-btn" target="_blank" rel="noopener noreferrer" title={link.name}>
+								<span class="icon" set:html={link.icon} />
+							</a>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	}
+
+	.v-card-container {
+		max-width: 600px;
+		width: 100%;
+		perspective: 1000px;
+	}
+
+	.card {
+		background: white;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		backdrop-filter: blur(10px);
+		border-radius: 2.5rem;
+		padding: 3.5rem;
+		box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.profile-header {
+		margin-bottom: 2rem;
+	}
+
+	.avatar-container {
+		width: 120px;
+		height: 120px;
+		margin: 0 auto 1.5rem;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 4px solid var(--accent-color);
+		box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+	}
+
+	.avatar-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.name {
+		font-family: var(--font-serif);
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--text-color);
+		margin-bottom: 0.5rem;
+		letter-spacing: -0.025em;
+	}
+
+	.title {
+		font-size: 1.125rem;
+		color: var(--accent-color);
+		font-weight: 600;
+	}
+
+	.summary {
+		font-size: 1rem;
+		color: #475569;
+		line-height: 1.6;
+		margin-bottom: 2.5rem;
+		max-width: 480px;
+	}
+
+	.actions {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.primary-actions {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+	}
+
+	.secondary-actions {
+		display: flex;
+		justify-content: center;
+		gap: 1.5rem;
+	}
+
+	.main-btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 1rem 0.5rem;
+		background: var(--bg-color);
+		border: 1px solid var(--border-color);
+		border-radius: 1.25rem;
+		font-weight: 600;
+		font-size: 0.875rem;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		color: var(--text-color);
+	}
+
+	.main-btn:hover {
+		background: var(--accent-light);
+		border-color: var(--accent-color);
+		color: var(--accent-color);
+		transform: translateY(-4px);
+		box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1);
+	}
+
+	.icon-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 52px;
+		height: 52px;
+		background: white;
+		border: 1px solid var(--border-color);
+		border-radius: 1rem;
+		color: #64748b;
+		transition: all 0.2s ease;
+	}
+
+	.icon-btn:hover {
+		color: var(--accent-color);
+		border-color: var(--accent-color);
+		background: var(--accent-light);
+		transform: scale(1.1);
+	}
+
+	@media (max-width: 480px) {
+		.card {
+			padding: 2.5rem 1.5rem;
+		}
+		
+		.primary-actions {
+			grid-template-columns: 1fr;
+		}
+
+		.main-btn {
+			flex-direction: row;
+			padding: 1rem 1.5rem;
+			justify-content: center;
+		}
+	}
+</style>
