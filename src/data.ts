@@ -25,6 +25,12 @@ export const experience = [
 
 export const publications = [
   {
+    title: "Rake-Compress Riccati Recursions for Parallel Scenario-Tree Model Predictive Control",
+    venue: "arXiv preprint, 2026",
+    arxiv: "https://arxiv.org/abs/2608.01332",
+    description: "An algebraically exact parallel solver for scenario-tree LQR based on rake-compress tree contraction, with linear work and logarithmic span."
+  },
+  {
     title: "Dual-Regularized Riccati Recursions for Interior-Point Optimal Control",
     venue: "arXiv preprint, 2025",
     arxiv: "https://arxiv.org/abs/2509.16370",
